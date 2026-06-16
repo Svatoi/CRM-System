@@ -4,4 +4,5 @@ dashboard_bp = Blueprint('dashboard', __name__)
 
 @dashboard_bp.route('/')
 def index():
-    return "<h1>OBIZIANA!</h1>"
+    return render_template('dashboard/index.html')
+
