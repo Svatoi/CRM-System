@@ -1,6 +1,113 @@
 {% extends 'base.html' %}
 
-{% block title %}Team analytics | CRM{% endblock %}
+{% block title %}Dashboard | CRM{% endblock %}
 
 {% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2 fw-bold">Dashboard</h1>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card card-custom p-3 border-start border-primary border-4 bg-white shadow-sm">
+            <div class="d-flex align-items-center">
+                <div class="p-3 bg-primary bg-opacity-10 text-primary rounded-3 me-3">
+                    <i class="bi bi-receipt fs-3"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted mb-1 small text-uppercase fw-bold">Total Orders</h6>
+                    <h3 class="mb-0 fw-bold">{{ total_orders }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card card-custom p-3 border-start border-warning border-4 bg-white shadow-sm">
+            <div class="d-flex align-items-center">
+                <div class="p-3 bg-warning bg-opacity-10 text-warning rounded-3 me-3">
+                    <i class="bi bi-hourglass-split fs-3"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted mb-1 small text-uppercase fw-bold">In Progress</h6>
+                    <h3 class="mb-0 fw-bold">{{ in_progress }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card card-custom p-3 border-start border-success border-4 bg-white shadow-sm">
+            <div class="d-flex align-items-center">
+                <div class="p-3 bg-success bg-opacity-10 text-success rounded-3 me-3">
+                    <i class="bi bi-check2-circle fs-3"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted mb-1 small text-uppercase fw-bold">Completed</h6>
+                    <h3 class="mb-0 fw-bold">{{ completed }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card card-custom p-3 border-start border-info border-4 bg-white shadow-sm">
+            <div class="d-flex align-items-center">
+                <div class="p-3 bg-info bg-opacity-10 text-info rounded-3 me-3">
+                    <i class="bi bi-currency-dollar fs-3"></i>
+                </div>
+                <div>
+                    <h6 class="text-muted mb-1 small text-uppercase fw-bold">Revenue</h6>
+                    <h3 class="mb-0 fw-bold">${{ "{:,.2f}".format(revenue) }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card card-custom p-4 bg-white shadow-sm border-0">
+            <h5 class="fw-bold mb-3"><i class="bi bi-clock-history me-2 text-primary"></i>Recent Activity</h5>
+            {% if recent_orders %}
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0 table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Client</th>
+                                <th scope="col">Product</th>
+                                <th scope="col" class="text-center">Qty</th>
+                                <th scope="col">Total</th>
+                                <th scope="col" class="text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in recent_orders %}
+                                <tr>
+                                    <td class="fw-bold">#{{ order.id }}</td>
+                                    <td>{{ order.client_name }}</td>
+                                    <td><span class="badge bg-light text-dark border">{{ order.product }}</span></td>
+                                    <td class="text-center">{{ order.quantity }}</td>
+                                    <td class="text-primary fw-semibold">${{ "{:,.2f}".format(order.total_cost) }}</td>
+                                    <td class="text-center">
+                                        {% if order.status == 'New' or order.status == 'Новый' %}
+                                            <span class="badge bg-primary">New</span>
+                                        {% elif order.status == 'In Progress' or order.status == 'В работе' %}
+                                            <span class="badge bg-warning text-dark">In Progress</span>
+                                        {% elif order.status == 'Completed' or order.status == 'Завершен' %}
+                                            <span class="badge bg-success">Completed</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="text-center py-4 text-muted">
+                    <i class="bi bi-database-dash fs-3 mb-2 d-block"></i>
+                    No active orders found. Go to the "Orders" menu to create your first order.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}

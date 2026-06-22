@@ -3,3 +3,4 @@
 .env
 .venv/
 crm.db
+*te.py

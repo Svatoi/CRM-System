@@ -14,7 +14,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link {% if request.endpoint and 'orders.list_orders' in request.endpoint %}active{% endif %}" href="{{ url_for('orders.list_orders') }}">
                         <i class="bi bi-receipt me-2"></i> Orders
                     </a>
                 </li>

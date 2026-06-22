@@ -6,7 +6,7 @@ from flask_login import LoginManager
 load_dotenv('.env')
 
 from .models import db, User
-from .auth import auth_bp
+from .routers import auth_bp, orders_bp
 from .dashboard import dashboard_bp
 
 login_manager = LoginManager()
@@ -34,5 +34,6 @@ def create_app():
 
     app.register_blueprint(dashboard_bp)
     app.register_blueprint(auth_bp)
+    app.register_blueprint(orders_bp)
 
     return app
