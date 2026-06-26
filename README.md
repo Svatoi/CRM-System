@@ -3,7 +3,7 @@
 ![Python](https://img.shields.io/badge/Python-3.11-blue?style=flat-square&logo=python)
 ![Flask](https://img.shields.io/badge/Flask-3.1-black?style=flat-square&logo=flask)
 ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-red?style=flat-square)
-![MySQL](htt (ps://img.shields.io/badge/MySQL-8.0-blue?style=flat-square&logo=mysql)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-blue?style=flat-square&logo=mysql)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple?style=flat-square&logo=bootstrap)
 
@@ -21,37 +21,36 @@ This is a web application (CRM/control panel) based on the Flask microframework.
 
 - **Responsive Interface:** A modern responsive design based on Bootstrap 5 and Bootstrap icons, beautifully displayed on both desktop and mobile devices.
 
-## 🛠 Technology Stack
+## Technology Stack
 
 * **Backend:** Python 3.11, Flask (Blueprint, Application Factory)
 * **Database and ORM:** MySQL 8.0/SQLite, SQLAlchemy 2.0 (Flask-SQLAlchemy)
 * **Frontend:** HTML5, Jinja2, Bootstrap 5, Bootstrap icons.
-
 * **Infrastructure:** Docker, Docker Compose.
 
---
+---
 
 ## Quick Start (Running with Docker)
 
 This method is recommended for running this project. Docker Desktop must be installed and running.
 
 ### Step 1. Clone the Repository
-``` bash
+```bash
 git clone https://github.com/your_username/flask_crm_app.git
-flask_crm_app CD
+cd flask_crm_app
 ```
 
 ### Step 2. Configure the Environment
 Copy the `.env.example` configuration template to your working `.env` file.
-``` bash
+```bash
 cp .env.example .env
 ```
 *(You can change the default encryption key and MySQL database access credentials within the `.env` file)*
 
 ### Step 3. Run the Containers
 Select the services (Flask Web Application and MySQL Database Server) and run them in the background.
-``` bash
-docker compose --build -d
+```bash
+docker compose up --build -d
 ```
 
 ### Step 4. Log in to the system
@@ -73,24 +72,34 @@ If you want to make changes to your local code without using Docker, follow thes
 1. **Clone the repository** and use the project tools.
 
 2. **Create and activate the virtual environment:**
-``` bash python -m venv .venv
+```bash
+python -m venv .venv
 # For Windows: .venv\Scripts\activate
 # For Linux/macOS: source .venv/bin/activate
 ```
+
 3. **Install dependencies:**
-``` bash pip install -r requirements.txt
+```bash
+pip install -r requirements.txt
 ```
+
 4. **Database Setup:**
-Ensure the `DATABASE_URL` line in your `.env` file is commented out. The application will automatically switch to the local SQLite database, and the database will be created in the crm.db file. 5. **Running Server Development:**
-``` bash
+Ensure the `DATABASE_URL` line in your `.env` file is commented out. The application will automatically switch to the local SQLite database, and the database will be created in the crm.db file.
+
+5. **Running Server Development:**
+```bash
 flask run
 # Or run directly from Python:
 python run.py
 ```
+
 ---
+
 ## Project Architecture
+
 This project is built modularly using Flask Blueprints templates.
-`` ``` text
+
+```text
 CRM system/
 ├── application/
 │ ├── auth/ # Authentication module (login, registration, sessions)
