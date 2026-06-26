@@ -101,10 +101,11 @@ This project is built modularly using Flask Blueprints templates.
 
 ```text
 CRM system/
-├── application/
-│ ├── auth/ # Authentication module (login, registration, sessions)
+├── app/
 │ ├── dashboard/ # Homepage module (metrics collection and display)
 │ ├── routers/ # Additional routes and APIs
+│ ├──        auth/
+│ ├──        orders/ 
 │ ├── static/ # Static files (CSS, JS, images)
 │ ├── templates/ # HTML templates (base template and page components)
 │ ├── __init__.py # Application initialization (Application Factory)
@@ -112,6 +113,6 @@ CRM system/
 ├── crm.db # Local SQLite database file (created when running locally)
 ├── docker-compose.yml # Configuration for running a multi-container application
 ├── Dockerfile # Docker image building script
-├── require.txt # Python library dependencies
+├── requirements.txt # Python library dependencies
 └── run.py # Entry point
 ```
